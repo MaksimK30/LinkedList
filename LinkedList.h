@@ -56,6 +56,35 @@ public:
         return header == nullptr ? throw std::out_of_range("Index out of range") : header->value;
     }
 
+    //Получит элемент по индексу
+    T ElementAt(int index){
+        if(size <= index || size < 0){
+            throw std::out_of_range("Index out of range");
+        }
+
+        Node *currentNode = header;
+        for(int i = 0; i < index; i++){
+            currentNode = currentNode->pNextNode;
+        }
+
+        return currentNode->value;
+    }
+
+    //Получить последний элемент
+    T Back(){
+        if(size < 1){
+            throw std::out_of_range("Index out of range");
+        }
+
+        Node *currentNode = header;
+
+        while(currentNode->pNextNode != nullptr){
+            currentNode = currentNode->pNextNode;
+        }
+
+        return currentNode->value;
+    }
+
     //Проверка на пустоту
     bool IsEmpty(){
         return size == 0;
