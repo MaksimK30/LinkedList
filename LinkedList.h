@@ -25,6 +25,16 @@ public:
         size++;
     }
 
+    //Добавление элемента в начало
+    void PushFront(T value){
+        Node *newHeader = new Node(value);
+        newHeader->pNextNode = header;
+        header = newHeader;
+        size++;
+    }
+
+    //Добавление элемента в место по индексу
+
     //Проверка на пустоту
     bool IsEmpty(){
         return size == 0;
