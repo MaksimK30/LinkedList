@@ -37,11 +37,13 @@ public:
 
     //Добавление элемента в место по индексу
     void PushAt(int index, T value){
+        Node *currentNode;
+
         if(index >= size || index < 0){
             throw std::out_of_range("Index out of range");
         }
 
-        Node *currentNode = header;
+        currentNode = header;
 
         for(int i = 0; i < index; i++){
             currentNode = currentNode->pNextNode;
@@ -58,11 +60,14 @@ public:
 
     //Получит элемент по индексу
     T ElementAt(int index){
+        Node *currentNode;
+
         if(size <= index || size < 0){
             throw std::out_of_range("Index out of range");
         }
 
-        Node *currentNode = header;
+        currentNode = header;
+
         for(int i = 0; i < index; i++){
             currentNode = currentNode->pNextNode;
         }
@@ -72,11 +77,13 @@ public:
 
     //Получить последний элемент
     T Back(){
+        Node *currentNode;
+
         if(size < 1){
             throw std::out_of_range("Index out of range");
         }
 
-        Node *currentNode = header;
+        currentNode = header;
 
         while(currentNode->pNextNode != nullptr){
             currentNode = currentNode->pNextNode;
