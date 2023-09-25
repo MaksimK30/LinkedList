@@ -51,6 +51,11 @@ public:
         size++;
     }
 
+    //Получение первого элемента
+    T Front(){
+        return header == nullptr ? throw std::out_of_range("Index out of range") : header->value;
+    }
+
     //Проверка на пустоту
     bool IsEmpty(){
         return size == 0;
