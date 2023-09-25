@@ -160,6 +160,68 @@ public:
         return value;
     }
 
+    void EraseFront(){
+        Node *tmpNode;
+
+        if(size == 0){
+            throw std::out_of_range("Index out of range");
+        }
+
+        tmpNode = header;
+
+        header = tmpNode->pNextNode;
+        delete tmpNode;
+        size--;
+    }
+
+    void EraseAt(int index){
+        Node *currentNode;
+        Node *tmpNode;
+
+        if(index < 0 || index >= size){
+            throw std::out_of_range("Index out of range");
+        }
+
+        currentNode = header;
+
+        for(int i = 0; i < index; i++){
+            currentNode = currentNode->pNextNode;
+
+            if(i == index - 2){
+                tmpNode = currentNode;
+            }
+        }
+
+        tmpNode->pNextNode = currentNode->pNextNode;
+        delete currentNode;
+        size--;
+    }
+
+    void EraseBack(){
+        Node *currentNode;
+
+        if(size < 1){
+            throw std::out_of_range("Index out of range");
+        }
+
+        if(size == 1)
+        {
+            delete header;
+            header = nullptr;
+            size = 0;
+        }
+
+        currentNode = header;
+
+        for(int i = 0; i < size - 2; i++){
+            currentNode = currentNode->pNextNode;
+        }
+        \
+        delete currentNode->pNextNode;
+        currentNode->pNextNode = nullptr;
+        size--;
+    }
+
     //Проверка на пустоту
     bool IsEmpty(){
         return size == 0;
