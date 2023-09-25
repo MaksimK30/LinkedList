@@ -85,6 +85,81 @@ public:
         return currentNode->value;
     }
 
+    T PopFront(){
+        Node *tmpNode;
+        T value;
+
+        if(size == 0){
+            throw std::out_of_range("Index out of range");
+        }
+
+        tmpNode = header;
+        value = tmpNode->value;
+
+        header = tmpNode->pNextNode;
+        delete tmpNode;
+        size--;
+
+        return value;
+    }
+
+    T PopAt(int index){
+        Node *currentNode;
+        Node *tmpNode;
+        T value;
+
+        if(index < 0 || index >= size){
+            throw std::out_of_range("Index out of range");
+        }
+
+        currentNode = header;
+
+        for(int i = 0; i < index; i++){
+            currentNode = currentNode->pNextNode;
+
+            if(i == index - 2){
+                tmpNode = currentNode;
+            }
+        }
+
+
+        value = currentNode->value;
+        tmpNode->pNextNode = currentNode->pNextNode;
+        delete currentNode;
+        size--;
+        return value;
+    }
+
+    T PopBack(){
+        Node *currentNode;
+        T value;
+
+        if(size < 1){
+            throw std::out_of_range("Index out of range");
+        }
+
+        if(size == 1){
+            value = header->value;
+            delete header;
+            header = nullptr;
+            size = 0;
+            return value;
+        }
+
+        currentNode = header;
+
+        for(int i = 0; i < size - 2; i++){
+            currentNode = currentNode->pNextNode;
+        }
+        \
+        value = currentNode->pNextNode->value;
+        delete currentNode->pNextNode;
+        currentNode->pNextNode = nullptr;
+        size--;
+
+        return value;
+    }
+
     //Проверка на пустоту
     bool IsEmpty(){
         return size == 0;
