@@ -10,15 +10,19 @@ public:
     }
 
     //Добавить элемент в конце списка
-    void PushBack(T *value){
+    void PushBack(T value){
         if(header == nullptr){
-            header = Node(value);
-        }else{
+            header = new Node(value);
+        }else
+        {
             Node *currentNode = header;
-            while(currentNode != nullptr){
+            while(currentNode->pNextNode != nullptr){
                 currentNode = currentNode->pNextNode;
             }
+
+            currentNode->pNextNode = new Node(value);
         }
+        size++;
     }
 
 private:
@@ -26,6 +30,7 @@ private:
     public:
         Node(T value, Node *nextNode = nullptr){
             pNextNode = nextNode;
+            this->value = value;
         }
 
         Node *pNextNode;
