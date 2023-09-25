@@ -25,6 +25,11 @@ public:
         size++;
     }
 
+    //Проверка на пустоту
+    bool IsEmpty(){
+        return size == 0;
+    }
+
 private:
     class Node{
     public:
