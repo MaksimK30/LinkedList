@@ -1,6 +1,8 @@
 #ifndef LINKEDLIST_H
 #define LINKEDLIST_H
 
+#include <stdexcept>
+
 template <typename T>
 class LinkedList{
 public:
@@ -34,6 +36,20 @@ public:
     }
 
     //Добавление элемента в место по индексу
+    void PushAt(int index, T value){
+        if(index >= size || index < 0){
+            throw std::out_of_range("Index out of range");
+        }
+
+        Node *currentNode = header;
+
+        for(int i = 0; i < index; i++){
+            currentNode = currentNode->pNextNode;
+        }
+
+        currentNode->value = value;
+        size++;
+    }
 
     //Проверка на пустоту
     bool IsEmpty(){
